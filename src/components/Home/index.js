@@ -11,8 +11,8 @@ class Home extends React.Component {
   }
 
 
-  handleOnClick = () => {
-    this.setState({ loginOrSignin: !this.state.loginOrSignin });
+  handleOnClick = (value) => {
+    this.setState({ loginOrSignin: value });
   }
 
 
@@ -36,8 +36,8 @@ class Home extends React.Component {
             <div className="col-md-6">
               <div className="card card-body" style={{ backgroundColor: 'rgba(240,240,240,0.8)' }}>
                 <div className="btn-group my-2 mx-auto" role="group" aria-label="Basic example">
-                  <button onClick={this.handleOnClick} name="loginOrSignin" type="button" className="btn btn-secondary btn-lg pl-4 py-2">Log in</button>
-                  <button onClick={this.handleOnClick} name="loginOrSignin" type="button" className="btn btn-secondary btn-lg pr-4 py-2">Sign up</button>
+                  <button onClick={() => this.handleOnClick(false)} name="loginOrSignin" type="button" className="btn btn-secondary btn-lg pl-4 py-2">Log in</button>
+                  <button onClick={() => this.handleOnClick(true)} name="loginOrSignin" type="button" className="btn btn-secondary btn-lg pr-4 py-2">Sign up</button>
                 </div>
                 {
                   this.state.loginOrSignin ?
