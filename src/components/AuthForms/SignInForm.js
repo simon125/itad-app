@@ -7,14 +7,21 @@ class SignInForm extends Component {
     state = {
         email: '',
         password: '',
-        repetedPassword: ''
+        repetedPassword: '',
+        position: 'coworker'
     }
     handleOnSubmit = e => {
         e.preventDefault();
-        const { email, password, repetedPassword } = this.state;
+        const { email, password, repetedPassword, position } = this.state;
         if (email.trim() !== '' && password === repetedPassword) {
-            this.props.createUser(email, password);
+            this.props.createUser(email, password, position);
         }
+        this.setState({
+            email: '',
+            password: '',
+            repetedPassword: '',
+            position: 'coworker'
+        });
     }
     handleOnChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -54,7 +61,33 @@ class SignInForm extends Component {
                         type="password"
                         className="form-control" />
                 </div>
+                <div className="form-group d-flex justify-content-around">
+                    <label htmlFor="organizer">
+                        Organizer
+                    <input
+                            id='organizer'
+                            value='organizer'
+                            onChange={() => this.setState({ position: 'organizer' })}
+                            name="position"
+                            type="radio"
+                            className="ml-4" />
+                    </label>
+
+                    <label htmlFor="coworker">
+                        Coworker
+                    <input
+                            defaultChecked={true}
+                            id='coworker'
+                            value='coworker'
+                            onChange={() => this.setState({ position: 'coworker' })}
+                            name="position"
+                            type="radio"
+                            className="ml-4" />
+
+                    </label>
+                </div>
                 <input
+                    disabled={this.props.isLoggedIn}
                     type="submit"
                     value="Sign up"
                     className="btn btn-primary btn-block" />
@@ -63,4 +96,12 @@ class SignInForm extends Component {
     }
 }
 
-export default connect(null, { createUser })(SignInForm);
+const mapStateToProps = state => {
+    console.log("mapstatetoprpos: ", state.auth.isLoggedIn)
+    return {
+        isLoggedIn: state.auth.isLoggedIn
+    }
+}
+
+
+export default connect(mapStateToProps, { createUser })(SignInForm);
