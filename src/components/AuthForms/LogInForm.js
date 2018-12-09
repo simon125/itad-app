@@ -33,7 +33,7 @@ class LogInForm extends Component {
                         onChange={this.handleOnChange}
                         name="email"
                         placeholder="Type your email..."
-                        type="text"
+                        type="email"
                         className="form-control" />
 
                 </div>
@@ -61,7 +61,6 @@ class LogInForm extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log("mapstatetoprpos: ", state.auth.isLoggedIn)
     return {
         isLoggedIn: state.auth.isLoggedIn
     }

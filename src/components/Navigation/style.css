@@ -1,0 +1,27 @@
+.responsive-nav-container{
+z-index: 1000;
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(0, 0, 0, 0.801);
+}
+
+.responsive-nav{
+    font-size: 50px;
+    list-style: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.responsive-nav__item{
+    margin: 20px 0;
+}
+
+
+.responsive-nav__item--exit{
+    cursor: pointer;
+}

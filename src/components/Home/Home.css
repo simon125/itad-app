@@ -1,6 +1,6 @@
 .home-container{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     top:0;
     left: 0;
@@ -9,4 +9,14 @@
     background-repeat: no-repeat;
     background-position: center;
     z-index: -2;
+}
+.home-container__layer{
+    background-color: rgba(0,0,0,0.7);
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    position: absolute;
+    top:0;
+    left: 0;
+
 }

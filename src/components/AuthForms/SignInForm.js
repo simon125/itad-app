@@ -5,6 +5,7 @@ import { createUser } from '../../actions/actions'
 class SignInForm extends Component {
 
     state = {
+        nickName: '',
         email: '',
         password: '',
         repetedPassword: '',
@@ -12,11 +13,12 @@ class SignInForm extends Component {
     }
     handleOnSubmit = e => {
         e.preventDefault();
-        const { email, password, repetedPassword, position } = this.state;
-        if (email.trim() !== '' && password === repetedPassword) {
-            this.props.createUser(email, password, position);
+        const { nickName, email, password, repetedPassword, position } = this.state;
+        if (email.trim() !== '' && password === repetedPassword && nickName.trim() !== '') {
+            this.props.createUser(email, password, position, nickName);
         }
         this.setState({
+            nickName: '',
             email: '',
             password: '',
             repetedPassword: '',
@@ -32,13 +34,23 @@ class SignInForm extends Component {
         return (
             <form onSubmit={this.handleOnSubmit}>
                 <div className="form-group">
+                    <label htmlFor="nickName">Nick</label>
+                    <input
+                        value={this.state.nickName}
+                        onChange={this.handleOnChange}
+                        name="nickName"
+                        placeholder="Type your nick..."
+                        type="text"
+                        className="form-control" />
+                </div>
+                <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
                         value={this.state.email}
                         onChange={this.handleOnChange}
                         name="email"
                         placeholder="Type your email..."
-                        type="text"
+                        type="email"
                         className="form-control" />
                 </div>
                 <div className="form-group">
@@ -97,7 +109,6 @@ class SignInForm extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log("mapstatetoprpos: ", state.auth.isLoggedIn)
     return {
         isLoggedIn: state.auth.isLoggedIn
     }
