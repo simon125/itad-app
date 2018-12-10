@@ -11,10 +11,12 @@ There are lot of things to do, but for now basic feature it implements - assigni
 2) But if You want to fire on Your localhost you sholud type some comends in terminal in the root path with project, 
 2' you should have intstalled node enviorment and git
 
+```sh
 $ git clone <link>
 $ cd <name_of_project>
 $ npm install 
 $ npm start
+```
 
 After this you sholud have opened app in Your browser
 
