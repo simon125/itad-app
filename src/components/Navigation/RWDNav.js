@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './style.css'
+import { logOut } from '../../actions/actions';
 
 
-function RWDNav({ handleOnClick }) {
+function RWDNav({ handleOnClick, logOut, isLoggedIn }) {
     return (
         <div className="responsive-nav-container">
             <ul className="responsive-nav">
@@ -16,6 +18,16 @@ function RWDNav({ handleOnClick }) {
                 <li className="responsive-nav__item text-center">
                     <Link onClick={() => handleOnClick(false)} className="nav-link text-light" to='/app'>App</Link>
                 </li>
+                {
+                    isLoggedIn ? (<li className="responsive-nav__item text-center">
+                        <span onClick={() => {
+                            logOut()
+                            handleOnClick(false)
+                        }} className="responsive-nav__item--exit  text-light" >Logout</span>
+                    </li>)
+                        :
+                        null
+                }
                 <li className="responsive-nav__item text-center">
                     <span onClick={() => handleOnClick(false)} className="responsive-nav__item--exit  text-light" >&times;</span>
                 </li>
@@ -23,7 +35,10 @@ function RWDNav({ handleOnClick }) {
         </div>
     )
 }
+const mapStateToProps = state => {
+    return {
+        isLoggedIn: state.auth.isLoggedIn
+    }
+}
 
-
-
-export default RWDNav
+export default connect(mapStateToProps, { logOut })(RWDNav)

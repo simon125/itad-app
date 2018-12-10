@@ -1,4 +1,4 @@
-import { LOGGED_IN, LOGGED_OUT, SET_COWORKERS } from './types';
+import { LOGGED_IN, LOGGED_OUT, SET_COWORKERS, GET_TASKS, SET_SINGLE_COWORKER } from './types';
 import { auth, db } from '../firebase';
 
 export const loggedIn = (user, position) => {
@@ -38,12 +38,14 @@ export const createUser = (email, password, position, nickName) => async dispatc
 
     auth.createUserWithEmailAndPassword(email, password)
         .then(user => {
-            db.ref('/users/' + user.user.uid).set({
+            const uid = user.user.uid;
+            db.ref('/users/' + uid).set({
                 position
             })
             if (position === 'coworker') {
 
-                db.ref('/coworkers/' + user.user.uid).set({
+                db.ref('/coworkers/' + uid).set({
+                    uid,
                     nickName,
                     assignedTasks: 'No tasks'
                 })
@@ -73,5 +75,38 @@ export const getCoworkers = () => async dispatch => {
         dispatch(setCoworkers(snapshot.val()))
     }).catch((err) => {
         console.log(err)
+    })
+}
+
+export const getTasks = (users) => {
+    return ({
+        type: GET_TASKS,
+        payload: users
+    })
+}
+
+export const fetchCoworkersTasks = () => async dispatch => {
+    db.ref('/coworkers').once('value').then(snapshot => {
+
+        const coworkers = snapshot.val();
+        dispatch(getTasks(coworkers));
+    })
+}
+
+
+export const createTask = (task, uid) => async dispatch => {
+    db.ref('/coworkers').child(uid).child('assignedTasks').push().set({ task }).catch(err => console.log(err))
+}
+export const setSingleCoworker = (coworker) => {
+    return ({
+        type: SET_SINGLE_COWORKER,
+        payload: coworker
+    })
+}
+
+export const fetchSingleCoworkerData = (uid) => async dispatch => {
+    db.ref(`/coworkers/${uid}`).once('value').then(snapshot => {
+        const singleCoworkerData = snapshot.val()
+        dispatch(setSingleCoworker(singleCoworkerData))
     })
 }

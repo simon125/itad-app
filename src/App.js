@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
+          <div style={{ position: 'absolute', top: 0, left: 0, zIndex: -40, width: '100%', minHeight: '100%', height: "auto", backgroundColor: 'grey' }}>
             <Navigation />
             <Switch>
               <Route exact path='/' component={Home} />

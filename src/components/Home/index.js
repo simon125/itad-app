@@ -6,8 +6,6 @@ import { connect } from 'react-redux'
 import SignInForm from '../AuthForms/SignInForm'
 import LogInForm from '../AuthForms/LogInForm'
 
-import Team from '../Organizer/Team'
-
 class Home extends React.Component {
 
   state = {
@@ -50,28 +48,6 @@ class Home extends React.Component {
                   }
                 </div>
               </div>
-
-              {/* <div className="card card-body">
-              {
-                this.props.isLoggedIn ? <h1 className="display-4">jestes zalogowany</h1> :
-                  <h1 className="display-4">jestes NIE zalogowany</h1>
-              }
-              {
-                this.props.position === null
-                  ?
-                  <h2>nie jest nikt zalogowany</h2>
-                  :
-                  this.props.position === 'coworker'
-                    ?
-                    <p>to je coworker</p>
-                    :
-                    <p>
-                      to je organizer
-                      <Team />
-                    </p>
-
-              }
-            </div> */}
             </div>
           </div>
         </div>

@@ -6,10 +6,7 @@ import { initAuthUserSync } from './actions/actions'
 export const store = createStore(
     rootReducer,
     {},
-    compose(
-        applyMiddleware(reduxThunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__())
+    applyMiddleware(reduxThunk)
 );
 
 store.dispatch(initAuthUserSync());

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../../actions/actions'
 
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import RWDNav from './RWDNav'
 
@@ -34,7 +34,7 @@ class Navigation extends React.Component {
                             <Link className="nav-link" to='/app'>App</Link>
                         </li>
                     </ul>
-                    {/* <button onClick={logOut} disabled={!isLoggedIn} className="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</button> */}
+                    <button onClick={logOut} disabled={!isLoggedIn} className="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</button>
                 </div>
                 {
                     this.state.isNavOpen ? <RWDNav handleOnClick={this.handleOnClick} /> : null
