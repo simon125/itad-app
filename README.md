@@ -6,7 +6,7 @@ There are lot of things to do, but for now basic feature it implements - assigni
 
 ### How to open app - watch results
 
-1) The easiest way will be click on link on the top of the repository or here ==>
+1) The easiest way will be click on link on the top of the repository or here ==> [LINK](https://todomediumapp.firebaseapp.com/)
 
 2) But if You want to fire on Your localhost you sholud type some comends in terminal in the root path with project, 
 2' you should have intstalled node enviorment and git
